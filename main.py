@@ -1,39 +1,30 @@
-# main.py
+import json
 from audio_generator import generate_audio
 from video_creator import create_video_with_captions
 from moviepy.config import change_settings
 
 def main():
+    # Cargar la configuración desde config.json
+    with open("config.json", "r") as f:
+        config = json.load(f)
+
     # Configuración de la ruta de ImageMagick
-    imagemagick_path = "C:\\Program Files\\ImageMagick-7.1.1-Q16-HDRI\\magick.exe"
-    change_settings({"IMAGEMAGICK_BINARY": imagemagick_path})
-    
-    # Parámetros de configuración
-    ref_audio_path = "./audiocharacters/alfredaudio.opus"
-    ref_text = ""
-    gen_text = "Independent game development has transformed from a niche hobby into a thriving industry. Small teams and solo developers now create innovative titles that rival major studios, thanks to accessible development tools and digital distribution platforms. This has led to unique gaming experiences that push creative boundaries while operating on smaller budgets."
-    output_video_path = "./salidas/output_video.mp4"
-    
-    # Elegir el formato del video
-    print("Selecciona el formato del video:")
-    print("1: Horizontal (YouTube)")
-    print("2: Vertical (Shorts)")
-    choice = input("Elige una opción (1 o 2): ")
-    
-    if choice == "1":
-        resolution = "horizontal"
-    elif choice == "2":
-        resolution = "vertical"
-    else:
-        print("Opción no válida, se usará el formato horizontal por defecto.")
-        resolution = "horizontal"
-    
+    change_settings({"IMAGEMAGICK_BINARY": config["imagemagick_path"]})
+
     # Generar el audio usando F5-TTS
-    audio_file = generate_audio(ref_audio_path, ref_text, gen_text)
+    audio_file = generate_audio(config["ref_audio_path"], config["ref_text"], config["gen_text"])
     print(f"Audio generado: {audio_file}")
-    
+
     # Crear el video con el audio y los subtítulos sincronizados
-    create_video_with_captions(audio_file, output_video_path, resolution=resolution)
+    create_video_with_captions(
+        audio_file,
+        config["output_video_path"],
+        fontsize=config["fontsize"],
+        color=config["font_color"],
+        bg_color=config["bg_color"],
+        resolution=config["resolution"],
+        background_path=config["background_path"]
+    )
 
 if __name__ == "__main__":
     main()

@@ -1,0 +1,12 @@
+{
+    "imagemagick_path": "C:\\Program Files\\ImageMagick-7.1.1-Q16-HDRI\\magick.exe",
+    "ref_audio_path": "./audiocharacters/alfredaudio.opus",
+    "ref_text": "",
+    "gen_text": "I think that unfortunately that is true. Most of the functionality is still there though. I think there is a PR that aims to be a 2.0 release of moviepy. I am not sure who is a contributor that could make the decision to include the changes and go forward with all of this.",
+    "output_video_path": "./salidas/output_video.mp4",
+    "background_path": "./fondos/cuarto.mp4",
+    "fontsize": 50,
+    "font_color": "white",
+    "bg_color": "black",
+    "resolution": "vertical"
+}

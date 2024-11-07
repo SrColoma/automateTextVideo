@@ -4,3 +4,6 @@
 # Carpetas específicas
 audiocharacters/
 salidas/
+fondos/
+
+__pycache__/
