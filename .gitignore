@@ -1,0 +1,6 @@
+# Archivos de configuración
+.env
+
+# Carpetas específicas
+audiocharacters/
+salidas/
