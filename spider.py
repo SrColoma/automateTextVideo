@@ -77,11 +77,11 @@ def capture_reddit_post(url, screenshot_output='title_screenshot.png', text_outp
             content_xpath = f'//*[@id="t3_{code}-post-rtjson-content"]'
             content_element = driver.find_element(By.XPATH, content_xpath)
             content = content_element.text
-
+            
             # Guardar el contenido en un archivo txt
             with open(text_output, 'w', encoding='utf-8') as f:
-                f.write(f"Title: {title}\n\n")
-                f.write("Content:\n")
+                f.write(f"{title}\n\n")
+                f.write("\n")
                 f.write(content)
 
             print(f"Content saved to {text_output}")

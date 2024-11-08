@@ -61,7 +61,7 @@ def main_interface():
         fontsize = gr.Slider(label="Tamaño de Fuente", minimum=10, maximum=100, value=50)
         
         # Cambiado a un menú desplegable para la resolución
-        resolution = gr.Dropdown(label="Resolución", choices=["vertical", "horizontal"], value="vertical")
+        resolution = gr.Dropdown(choices=["1920x1080", "1280x720", "1080x1920", "720x1280"], label="Resolución")
         
         # Botón para generar video
         generate_btn = gr.Button("Generar Video")

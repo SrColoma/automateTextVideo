@@ -10,15 +10,24 @@ def generate_audio(ref_audio_path, gen_text):
     for i, client_config in enumerate(clients):
         try:
             client = Client(client_config["url"])
+            # result = client.predict(
+            #     ref_audio_orig=handle_file(ref_audio_path),
+            #     ref_text="",
+            #     gen_text=gen_text,
+            #     model="F5-TTS",
+            #     remove_silence = False,
+            #     cross_fade_duration = 0.15,
+            #     speed = 1,
+            #     api_name="/infer"
+            # )
             result = client.predict(
-                ref_audio_orig=handle_file(ref_audio_path),
-                ref_text="",
-                gen_text=gen_text,
-                model="F5-TTS",
+                ref_audio_input=handle_file(ref_audio_path),
+                ref_text_input="",
+                gen_text_input=gen_text,
                 remove_silence = False,
-                cross_fade_duration = 0.15,
-                speed = 1,
-                api_name="/infer"
+                cross_fade_duration_slider = 0.15,
+                speed_slider = 1,
+                api_name="/basic_tts"
             )
             audio_file = result[0]  # Path to the generated audio file
             print(f"Audio generated using client {i+1}.")
