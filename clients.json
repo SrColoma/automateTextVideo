@@ -1,11 +1,14 @@
 [
     {
+        "url": "https://6283d37b62493d6859.gradio.live/"
+    },
+    {
+        "url": "https://48a4bf4cefe751fa23.gradio.live/"
+    },
+    {
         "url": "mrfakename/E2-F5-TTS"
     },
     {
         "url": "https://s5k.cn/api/v1/studio/modelscope/E2-F5-TTS/gradio/"
-    },
-    {
-        "url": "jpgallegoar/Spanish-F5"
     }
 ]
