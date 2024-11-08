@@ -39,15 +39,17 @@ def capture_reddit_post(url, screenshot_output='title_screenshot.png', text_outp
         # Abrir la URL
         driver.get(url)
 
+        # Convertir la URL para utilizar Google Translate
+        translate_url = f"https://translate.google.com/translate?sl=auto&tl=en&u={url}"
+
+        # Abrir la URL traducida
+        driver.get(translate_url)
+
         # Esperar explícitamente a que la página cargue
         wait = WebDriverWait(driver, 15)
         wait.until(EC.presence_of_element_located((By.TAG_NAME, "body")))
 
-        # Realizar click derecho sobre el cuerpo de la página y esperar a que aparezca la opción de traducir
-        body = driver.find_element(By.TAG_NAME, "body")
-        actions = ActionChains(driver)
-        actions.context_click(body).perform()
-        time.sleep(10)  # Esperar 10 segundos para que aparezca la opción de traducir
+        time.sleep(4)  # Esperar para que aparezca la opción de traducir
 
 
         # Esperar explícitamente a que el contenedor del post se cargue
@@ -57,19 +59,19 @@ def capture_reddit_post(url, screenshot_output='title_screenshot.png', text_outp
         )
 
         # Esperar a que se cargue el contenido
-        time.sleep(3)
+        time.sleep(1)
 
         # Extraer el título y contenido del post
         try:
             title = post_element.find_element(By.TAG_NAME, "h1").text
 
-            # Buscar y hacer clic en el botón "Read more" si existe
-            try:
-                read_more = driver.find_element(By.XPATH, "//button[contains(text(), 'read more')]")
-                driver.execute_script("arguments[0].click();", read_more)
-                time.sleep(1)  # Esperar a que se expanda el contenido
-            except Exception as e:
-                print("No se encontró botón 'read more' o ya está expandido")
+            # # Buscar y hacer clic en el botón "Read more" si existe
+            # try:
+            #     read_more = driver.find_element(By.XPATH, "//button[contains(text(), 'read more')]")
+            #     driver.execute_script("arguments[0].click();", read_more)
+            #     time.sleep(1)  # Esperar a que se expanda el contenido
+            # except Exception as e:
+            #     print("No se encontró botón 'read more' o ya está expandido")
 
             # Extraer el contenido completo
             content_xpath = f'//*[@id="t3_{code}-post-rtjson-content"]'
@@ -124,7 +126,7 @@ def capture_reddit_post(url, screenshot_output='title_screenshot.png', text_outp
             scale_factor = dimensions['scale']
 
             # Añadir un pequeño margen para asegurar que capturamos todo el contenido
-            margin = 20 * scale_factor
+            margin = 5 * scale_factor
 
             # Ajustar las coordenadas según el factor de escala y añadir margen
             crop_box = (
