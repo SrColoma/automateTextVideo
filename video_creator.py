@@ -8,7 +8,7 @@ def get_transcribed_text(audio_file):
     results = whisper.transcribe(model, audio, language="en")
     return results["segments"]
 
-def create_video_with_captions(audio_file, output_path="output_video.mp4", fontsize=50, color="white", bg_color="black", resolution="horizontal", background_path="./fondos/cuarto.mp4"):
+def create_video_with_captions(audio_file, output_path="output_video.mp4", fontsize=50, resolution="horizontal", background_path="./fondos/cuarto.mp4"):
     # Configuración de tamaño del video
     if resolution == "horizontal":
         size = (1280, 720)
@@ -34,10 +34,10 @@ def create_video_with_captions(audio_file, output_path="output_video.mp4", fonts
         for word in segment["words"]:
             text_clip = (TextClip(word["text"], 
                                   fontsize=fontsize, 
-                                  color=color, 
+                                  color="white", 
                                   method='caption',
                                   stroke_width=1, 
-                                  stroke_color=bg_color, 
+                                  stroke_color="black", 
                                   font="Arial-Bold",)
                          .set_start(word["start"])
                          .set_end(word["end"])

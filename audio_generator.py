@@ -1,7 +1,7 @@
 import json
 from gradio_client import Client, handle_file
 
-def generate_audio(ref_audio_path, ref_text, gen_text):
+def generate_audio(ref_audio_path, gen_text):
     # Load client configuration from clients.json
     with open("clients.json", "r") as f:
         clients = json.load(f)
@@ -12,7 +12,7 @@ def generate_audio(ref_audio_path, ref_text, gen_text):
             client = Client(client_config["url"])
             result = client.predict(
                 ref_audio_orig=handle_file(ref_audio_path),
-                ref_text=ref_text,
+                ref_text="",
                 gen_text=gen_text,
                 model="F5-TTS",
                 remove_silence = False,
