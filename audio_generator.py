@@ -26,7 +26,7 @@ def generate_audio(ref_audio_path, gen_text):
                 gen_text_input=gen_text,
                 remove_silence = False,
                 cross_fade_duration_slider = 0.15,
-                speed_slider = 1,
+                speed_slider = 0.8,
                 api_name="/basic_tts"
             )
             audio_file = result[0]  # Path to the generated audio file
